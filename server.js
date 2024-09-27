@@ -14,15 +14,7 @@ const inventoryRoute = require("./routes/inventoryRoute")
 const baseController = require("./controllers/baseController")
 const utilities = require("./utilities/")
 const pool = require('./database/')
-const bodyParser = require("body-parser")
 
-
-/* ***********************
- * Middleware
- * ************************/
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true })) 
 
 /* ***********************
  * View Engine and Templates
