@@ -71,24 +71,63 @@ a:not(.upgrade + a) {
 }
 
 /*|| NAVIGATION ||*/
+/************ Navigation ***************/
 nav {
-  background-color: dimgray;
+  background-color: #333;
+  color: #fff;
+  flex-wrap: wrap;
 }
 
-.navigation {
-  display: flex;
-  justify-content: space-around;
-  padding: 0;
-}
-
-.navigation li {
+nav ul {
   list-style: none;
+  margin: auto;
+  padding: 0;
+  width: 100%;
 }
 
-.navigation li a {
-  color: white;
+nav a:hover {
+  background-color: #555;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px;
+  width: max-content;
+  margin: auto;
+  width: 100%;
   display: block;
-  padding: 1em;
+  text-align: center;
+  border-top: 1px solid #555;
+}
+
+@media screen and (min-width: 768px) {
+  nav a {
+    padding: 10px;
+  }
+
+  nav ul {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/************ Index Page ***************/
+@media screen and (min-width: 768px) {
+  #upgrade-section {
+    width: 50%;
+    float: left;
+  }
+
+  #review-section {
+    width: 50%;
+    float: right;
+  }
+
+  #review-section h3 {
+    padding-left: 1em;
+  }
 }
 
 /*|| MAIN ||*/
