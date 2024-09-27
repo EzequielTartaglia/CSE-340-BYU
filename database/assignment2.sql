@@ -116,6 +116,10 @@ ON public.inventory.classification_id = public.classification.classification_id
 WHERE public.classification.classification_id = 2;
 
 -- Update image paths
-UPDATE public.inventory
-SET inv_image = REPLACE(inv_image, '/images', '/images/vehicles'), 
-inv_thumbnail = REPLACE(inv_thumbnail, '/images', '/images/vehicles');
+UPDATE public.inventory 
+SET 
+    inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'), 
+    inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/')
+WHERE 
+    inv_image LIKE '/images/%' 
+    AND inv_image NOT LIKE '/images/vehicles/%';
