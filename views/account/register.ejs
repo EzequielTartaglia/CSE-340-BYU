@@ -1,0 +1,8 @@
+<!-- Set title if exists -->
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+
+<%- include('../account-partials/register-form') %>

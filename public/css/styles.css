@@ -310,3 +310,65 @@ footer p {
     grid-column: 2/3;
   }
 }
+
+/* login / register */
+.login-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.login-div {
+  border-radius: 12px;
+  margin-top: 20px;
+  padding: 18px;
+  width: 90%;
+  max-width: 590px;
+  background-color: #4c96d7;
+}
+
+.account-label {
+  font-size: 0.6em;
+  color: white;
+}
+
+.no-account {
+  font-size: 0.6em;
+  margin-bottom: 8px;
+  color: white;
+  width: 180px;
+  text-align: center;
+}
+
+.no-account a {
+  color: white;
+}
+
+.button-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+#account-form button {
+  border-radius: 15px;
+  padding: 4px;
+  width: 80px;
+  border: none;
+  background-color: white;
+  margin: 12px;
+  font-weight: 800;
+}
+
+#account-form input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  margin-top: 6px;
+}
+
+#pw-span {
+  font-size: 0.5em;
+  color: white;
+}
