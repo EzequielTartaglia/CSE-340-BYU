@@ -6,19 +6,22 @@
  * Require Statements
  *************************/
 const express = require("express")
+const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
-const expressLayouts = require("express-ejs-layouts")
-const baseController = require("./controllers/baseController")
-const errorController = require("./controllers/errorController")
-const accountController = require("./controllers/accountController")
 const inventoryRoute = require("./routes/inventoryRoute")
-const accountRoute = require("./routes/accountRoute")
-const utilities = require("./utilities")
-const session = require("express-session")
+const baseController = require("./controllers/baseController")
+const utilities = require("./utilities/")
 const pool = require('./database/')
-const bodyParser = require("body-parser")
+const session = require("express-session")
+
+/* ***********************
+ * View Engine and Templates
+ *************************/
+app.set("view engine", "ejs")
+app.use(expressLayouts)
+app.set("layout", "./layouts/layout") // not at views root
 
 /* ***********************
  * Middleware
@@ -34,43 +37,21 @@ app.use(session({
   name: 'sessionId',
 }))
 
-// Express Messages Middleware
-app.use(require('connect-flash')())
-app.use(function(req, res, next){
-  res.locals.messages = require('express-messages')(req, res)
-  next()
-})
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-
-/* ***********************
- * View Engine and Templates
- *************************/
-app.set("view engine", "ejs")
-app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
-
 /* ***********************
  * Routes
  *************************/
 app.use(static)
+
 // Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
+
 // Inventory routes
 app.use("/inv", utilities.handleErrors(inventoryRoute))
-// Inventory Detail routes
-app.use("/inv/detail", utilities.handleErrors(inventoryRoute))
-// Account route
-app.use("/account", utilities.handleErrors(accountRoute))
-
-// error route
-app.use("/error", utilities.handleErrors(errorController))
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
-})
+  next({status: 404, message: "Slow down, Speed Racer! That page does not exist."});
+});
 
 /* ***********************
 * Express Error Handler
@@ -86,6 +67,7 @@ app.use(async (err, req, res, next) => {
     nav
   })
 })
+
 
 /* ***********************
  * Local Server Information
