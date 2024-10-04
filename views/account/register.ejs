@@ -1,8 +1,96 @@
-<!-- Set title if exists -->
-<% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else {
-        res.redirect('/')
-    } %>
+<div class="title-container">
+    <% if (title) { %>
+        <div class="content__heading"><h1><%= title %></h1></div>
+        <%# if (someCondition) { %>
+            <%# messages() %>
+        <%# } %>
+        <% } else {
+            res.redirect('/')
+        } %>
+</div>
 
-<%- include('../account-partials/register-form') %>
+<div class="message-container">
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+      <% } %>
+</div>
+
+<div class="main">
+    <div class="cse-motor__form-container form-container">
+        <form action="/account/register" method="post" class="cse-motor__form" id="registrationForm">
+            <div class="cse-motor-form__container">
+                <fieldset>
+                    <legend>Personal Information</legend>
+
+                    <div class="cse-motor-form__field">
+                        <label for="account_firstname" class="form__label">First Name:</label>
+                        <input 
+                            type="text" 
+                            placeholder="Enter your first name" 
+                            name="account_firstname" 
+                            class="form__input" 
+                            required
+                            value="<%= locals.account_firstname %>"
+                        >
+                    </div>
+            
+                    <div class="cse-motor-form__field">
+                        <label for="account_lastname" class="form__label">Last Name:</label>
+                        <input 
+                            type="text" 
+                            placeholder="Enter your last name" 
+                            name="account_lastname" 
+                            class="form__input" 
+                            required
+                            value="<%= locals.account_lastname %>"
+                        >
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Login Information</legend>
+
+                    <div class="cse-motor-form__field">
+                        <label for="account_email" class="form__label">Email:</label>
+                        <input 
+                            type="email" 
+                            placeholder="Enter a valid email" 
+                            name="account_email" 
+                            class="form__input" 
+                            required
+                            value="<%= locals.account_email %>"
+                        >
+                    </div>
+            
+                    <div class="cse-motor-form__field">
+                        <label for="account_password" class="form__label">Password:</label>
+                        <!--We always make the visitor re-type the password - Always!-->
+                        <input 
+                            type="password" 
+                            placeholder="Enter your password" 
+                            name="account_password" 
+                            id="accountPassword" 
+                            class="form__input" 
+                            required 
+                            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+                            >
+                        <span class="form__hint">
+                            Passwords Requirement: <br>
+                            - At least 12 characters <br>
+                            - Contain at least 1 number <br>
+                            - Contain 1 capital letter <br> 
+                            - Contain 1 special character</span>
+                    </div>
+                </fieldset>
+    
+                <button type="submit" class="form__button">Register Account</button>
+        
+                <span class="form__register form-footer-link"><div>Have an account? <a href="/account/login" class="form__login-link"> Login</a></div></span>
+            </div>
+        </form>
+    </div>
+</div>

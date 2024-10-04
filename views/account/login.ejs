@@ -1,8 +1,48 @@
-<!-- Set title if exists -->
-<% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else {
-        res.redirect('/')
-    } %>
+<div class="title-container">
+    <% if (title) { %>
+        <div class="content__heading"><h1><%= title %></h1></div>
+        <%# if (someCondition) { %>
+            <%# messages() %>
+        <%# } %>
+        <% } else {
+            res.redirect('/')
+        } %>
+</div>
 
-<%- include('../account-partials/login-form') %>
+<div class="main">
+    <!-- Block: login-container -->
+    <div class="cse-motor__form-container form-container">
+        <!-- Block: login-form -->
+        <form action="/account/login" method="POST" class="cse-motor__form" id="loginForm">
+            <!-- Block Element: login-form__container -->
+            <div class="cse-motor-form__container">
+                <fieldset>
+                    <legend>Login Information</legend>
+                    <!-- Block Element: login-form__field -->
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="account_email" class="form__label">Email:</label>
+                        <!-- Element within Block: form__input -->
+                        <input type="text" placeholder="Enter your email" name="account_email" class="form__input" required>
+                    </div>
+
+                    <!-- Block Element: login-form__field -->
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="account_password" class="form__label">Password:</label>
+                        <!-- Element within Block: form__hint -->
+                        <!--<span class="form__hint">Passwords must be at least 12 characters, contain at least 1 number, 1 capital letter, and 1 special character</span>-->
+                        <!-- Element within Block: form__input -->
+                        <input type="password" placeholder="Enter your password" name="account_password" id="accountPassword" class="form__input" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$">
+                    </div>
+                </fieldset>
+
+                <!-- Element within Block: btn -->
+                <button type="submit" class="form__button">Login</button>
+
+                <!-- Element within Block: form__register -->
+                <span class="form__register form-footer-link"><div>No account? <a href="/account/register" class="form__register-link">Sign up</a></div></span>
+            </div>
+        </form>
+    </div>
+</div>

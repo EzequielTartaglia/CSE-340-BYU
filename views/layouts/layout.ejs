@@ -3,15 +3,23 @@
 <%- include('../partials/head') %>
 
 <body>
-    <div id="wrapper">
+    <!-- Block: body__wrapper -->
+    <div id="body__wrapper">
+        <!-- Block: header -->
         <%- include('../partials/header') %>
+        
+        <!-- Block: navigation -->
         <%- include('../partials/navigation') %>
 
+        <!-- Block: main -->
         <main>
+            <!-- Element within Block: body -->
             <%- body %>
         </main>
 
+        <!-- Block: footer -->
         <%- include('../partials/footer') %>
     </div>
 </body>
+
 </html>

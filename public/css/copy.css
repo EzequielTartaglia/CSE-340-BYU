@@ -1,0 +1,287 @@
+
+
+.btn {
+  height: auto;
+  width: auto;
+  padding: 2px;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.btn:hover {
+  height: auto;
+  width: auto;
+  padding: 2px;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/*------------------------------------------------------------------------------*/
+/*                                Fonts                                         */
+/*------------------------------------------------------------------------------*/
+/* Header */
+.header__title-link,
+.header__login-link,
+/* Nav */
+.navigation__item,
+/* Main */
+.title,
+.card__title,
+.section__title,
+.content__heading,
+legend,
+.vehicle-name,
+.account-management-welcome {
+  font-family: var(--font-family-catamaran);
+}
+
+/* Main */
+.content__ul,
+.list-item-wrapper__title,
+.btn,
+.vehicle-grid-card__price,
+.form__label,
+.form-footer-link,
+.vehicle,
+.modify,
+.delete,
+.inventoryManagmentParagraph,
+.account-management-title,
+.accountmanagement-links,
+.vehicle-detail-card__text,
+/* Footer */
+.footer__copyright {
+  font-family: var(--font-family-openSans);
+}
+
+/*------------------------------------------------------------------------------*/
+/*                                cards                                         */
+/*------------------------------------------------------------------------------*/
+.card {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-cards {
+  height: 200px;
+  width: 130px;
+  box-shadow: 0px 10px 10px var(--dark-shadow-color);
+  border-radius: 10px;
+}
+
+
+
+/*------------------------------------------------------------------------------*/
+/*                                  Inventory view(s)                           */
+/*------------------------------------------------------------------------------*/
+.vehicle-grid__ul {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+}
+
+.vehicle-grid__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+/*.vehicle-grid-card*/
+
+.vehicle-grid-card__container {
+  width: 100%;
+  height: 100%; 
+}
+
+.vehicle-grid-card__image-container{
+  width: 100%; /* Ensure the image takes up the full width */
+}
+
+.vehicle-grid-card__image {
+  width: 100%; /* Ensure the image takes up the full width */
+  height: auto;
+  border-radius: 10px 10px 0 0;
+}  
+
+.vehicle-grid-card__text {
+  padding: 8px;
+  margin-bottom: 10px;
+  line-height: 20px;
+
+  /* Flex Box */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.vehicle-grid-card__link {
+  font-size: medium;
+  font-family: var(--font-family-openSans);
+  color: var(--gray-color);
+  text-decoration: none;
+}
+
+.vehicle-grid-card__link:hover {
+  color: var(--blue-color);
+}
+
+.vehicle-grid-card__price {
+  margin: 10px;
+}
+
+/*------------------------------------------------------------------------------*/
+/*                                Detail Page                                   */
+/*------------------------------------------------------------------------------*/
+
+.vehicle-detail-card__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.vehicle-detail-card__content{
+  display: flex;
+  flex-direction: column;
+}
+
+.vehicle-detail-card__image-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* vehicle-detail-card__image */
+
+/* vehicle-detail-card__text */
+
+
+
+
+/* **************************************
+ * Vehicle Detail View
+ * ************************************ */
+
+/* Container for each vehicle detail card */
+.vehicle-detail-card__container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd; /* Add a border for better separation */
+  margin: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+}
+
+/* Title styling - if you decide to uncomment the title section */
+.vehicle-detail-card__title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Container for the content (image and text) */
+.vehicle-detail-card__content {
+  display: flex;
+}
+
+/* Image container */
+.vehicle-detail-card__image-container {
+  flex: 1;
+  margin-right: 10px;
+}
+
+/* Vehicle image */
+.vehicle-detail-card__image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Text container */
+.vehicle-detail-card__text {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Individual text items */
+.vehicle-detail-card__text p {
+  margin: 5px 0;
+}
+
+/* Notice for no matching vehicles */
+.notice {
+  text-align: center;
+  font-style: italic;
+  color: #777;
+  margin: 20px 0;
+}
+
+/* **************************************
+ * Vehicle List View
+ * ************************************ */
+
+/* Container for the entire vehicle list */
+.vehicle-grid__ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Individual vehicle list item */
+.vehicle-grid__item {
+  width: 100%; /* Adjust as needed based on your design */
+  margin-bottom: 20px;
+}
+
+/* Container for each vehicle card */
+.vehicle-grid-card {
+  border: 1px solid #ddd; /* Add a border for better separation */
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+  overflow: hidden;
+}
+
+/* Image container within each vehicle card */
+.vehicle-grid-card__image-container {
+  overflow: hidden;
+}
+
+/* Vehicle image within each card */
+.vehicle-grid-card__image {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #ddd; /* Separate image from text with a border */
+}
+
+/* Text container within each vehicle card */
+.vehicle-grid-card__text {
+  padding: 10px;
+}
+
+/* Vehicle title within each card */
+.vehicle-grid-card__title {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+/* Vehicle price within each card */
+.vehicle-grid-card__price {
+  color: #007bff; /* Customize the color as needed */
+  font-weight: bold;
+}
+
+/* Notice for no matching vehicles */
+.vehicle-grid__notice {
+  text-align: center;
+  font-style: italic;
+  color: #777;
+  margin: 20px 0;
+}

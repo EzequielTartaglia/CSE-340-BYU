@@ -1,12 +1,13 @@
-<!-- Set title if exists -->
-<% if (title) { %>
-<h1><%= title %></h1>
-<% } else {
-    res.redirect('/')
-} %>
+<div class="title-container">
+    <% if (title) { %>
+        <div class="content__heading"><h1><%= title %></h1></div>
+        <%# if (someCondition) { %>
+            <%# messages() %>
+        <%# } %>
+        <% } else {
+            res.redirect('/')
+        } %>
+</div>
 
-<!-- Message output -->
-<%# messages() %>
-
-<!-- main view content output -->
+<!-- Block: Vehicle Details Display -->
 <%- grid %>

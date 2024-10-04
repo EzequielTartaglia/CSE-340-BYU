@@ -1,0 +1,30 @@
+<!-- Assignment 6 -->
+
+<div class="title-container">
+    <% if (title) { %>
+        <div class="content__heading"><h1><%= title %></h1></div>
+        <%- messages() %>
+        <% } else {
+            res.redirect('/')
+        } %>
+</div>
+
+
+<div class="inventoryManagement-container">
+    <h2 class="content__heading"> Manage Maintenance History </h2>
+
+    <p class="inventoryManagmentParagraph">Choose a Vehicle to view it's maintenance history.</p>
+    <%- vehicleInventoryList %>
+
+    <table id="recDisplay" class="recDisplay"></table>
+
+    <p class="inventoryManagmentParagraph">Want to add a new Record?</p>
+    <div class="management-button-container">
+        <%- maintenanceManagementButtons %>
+    </div>
+</div>
+
+
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
+<script src="../../js/maintenance.js"></script>

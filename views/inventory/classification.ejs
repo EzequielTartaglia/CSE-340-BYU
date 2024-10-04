@@ -1,13 +1,19 @@
-<!-- Set title if exists -->
-<% if (title) { %>
-<h1><%= title %></h1>
-<% } else {
-    res.redirect('/')
-} %>
+<% // Block: 3 Sections - Content Heading, Message, Inventory items display %>
 
-<!-- Message output -->
+<div class="title-container">
+    <% if (title) { %>
+        <div class="content__heading"><h1><%= title %></h1></div>
+        <%# if (someCondition) { %>
+            <%# messages() %>
+        <%# } %>
+        <% } else {
+            res.redirect('/')
+        } %>
+</div>
+
+<% // Block: Message %>
+<!-- # this comment mark disables the code below. Will later be replaced with - -->
 <%# messages() %>
 
-<!-- main view content output -->
+<% // Block: Inventory Items Display %>
 <%- grid %>
-

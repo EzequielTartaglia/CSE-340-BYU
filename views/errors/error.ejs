@@ -1,9 +1,13 @@
-<!-- Basic Error Handling -->
+<!-- Error Handling Activity -->
+
+<% // Block: Content Heading %>
 <% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else {
-        res.redirect('/')
-    } %>
-    
-    <!-- Message output -->
-    <%- message %>
+  <% // Element within Block: content__heading %>
+  <div class="content__heading"><h1><%= title %></h1></div>
+<% } else {
+  // Block: Redirect
+  res.redirect('/') // redirects the response object to the default index route, to deliver the home view.
+} %>
+
+<!-- Message Block -->
+<%- message %>

@@ -1,6 +1,100 @@
-<%- include('./index-partials/section-1-welcome') %>
-<div class="reviews-upgrades">
-    <%- include('./index-partials/section-2-reviews') %>
-    <%- include('./index-partials/section-3-upgrades') %>
+<div class="title-container">
+    <div class="content__heading">
+        <h1>Welcome to CSE Motors</h1>
+        <%# if (someCondition) { %>
+            <%# messages() %>
+        <%# } %>
+    </div>
 </div>
 
+<div class="main">
+    <!-- Section: DMC Delorean -->
+    <section class="section section__delorean">
+        <div class="card card--transparent">
+            <h2 class="card__title">DMC Delorean</h2>
+            <div class="content">
+                <div class="content-card__container">
+                    <ul class="content__ul content-detail__ul">
+                        <li>3 Cup holders</li>
+                        <li>Superman doors</li>
+                        <li>Fuzzy dice!</li>
+                    </ul>
+                    <button class="btn content__btn content__btn--default">Own Today</button>
+                </div>
+            </div>
+        </div>
+        <div class="section__img-wrapper">
+            <img src="/images/vehicles/delorean.jpg" alt="A gray and white futuristic car." class="section__image">
+        </div>
+    </section>
+
+    <!-- Section: DMC Delorean Reviews -->
+    <section class="section section-reviews">
+        <h2 class="section__title">DMC Delorean Reviews</h2>
+        <div class="content">
+            <ul class="content__ul content-reviews__ul">
+                <li>"So fast it's almost like traveling in time." (4/5)</li>
+                <li>"Coolest ride on the road." (4/5)</li>
+                <li>"I'm feeling McFly!" (5/5)</li>
+                <li>"The most futuristic ride of our day." (4.5/5)</li>
+                <li>"80s livin and I love it!" (5/5)</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Section: Delorean Upgrades -->
+    <section class="section">
+        <h2 class="section__title">Delorean Upgrades</h2>
+        <div class="content">
+            <ul class="content__ul content-upgrades__ul">
+                <!-- Upgrade: Flux Cap -->
+                <li class="ul__list-item ul__list-item-flux">
+                    <div class="list-item-wrapper">
+                        <div class="card card--blue">
+                            <div class="card__image-wrapper">
+                                <img src="/images/upgrades/flux-cap.png" alt="A gray square with red and blue shapes inside it." class="card__image">
+                            </div>
+                        </div>
+                        <h3 class="list-item-wrapper__title">Flux Cap</h3>
+                    </div>
+                </li>
+
+                <!-- Upgrade: Flame Decals -->
+                <li class="ul__list-item ul__list-item-flame">
+                    <div class="list-item-wrapper">
+                        <div class="card card--blue">
+                            <div class="card__image-wrapper">
+                                <img src="/images/upgrades/flame.jpg" alt="A large red and yellow flame with a white background." class="card__image">
+                            </div>
+                        </div>
+                        <h3 class="list-item-wrapper__title">Flame Decals</h3>
+                    </div>
+                </li>
+
+                <!-- Upgrade: Bumper Sticker -->
+                <li class="ul__list-item ul__list-item-bumper">
+                    <div class="list-item-wrapper">
+                        <div class="card card--blue">
+                            <div class="card__image-wrapper">
+                                <img src="/images/upgrades/bumper_sticker.jpg" alt="A gray square bumper sticker with the words 'Hello World' written on it." class="card__image">
+                            </div>
+                        </div>
+                        <h3 class="list-item-wrapper__title">Bumper Sticker</h3>
+                    </div>
+                </li>
+
+                <!-- Upgrade: Hub Cap -->
+                <li class="ul__list-item ul__list-item-hub">
+                    <div class="list-item-wrapper">
+                        <div class="card card--blue">
+                            <div class="card__image-wrapper">
+                                <img src="/images/upgrades/hub-cap.jpg" alt="A silver hub cap with triangles and bumps in the middle with a white background." class="card__image">
+                            </div>
+                        </div>
+                        <h3 class="list-item-wrapper__title">Hub Cap</h3>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>

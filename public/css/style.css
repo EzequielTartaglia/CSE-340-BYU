@@ -1,0 +1,326 @@
+/*------------------------------------------------------------------------------*/
+/*                                Font Import                                   */
+/*------------------------------------------------------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+/*------------------------------------------------------------------------------*/
+/*                                Root                                          */
+/*------------------------------------------------------------------------------*/
+/* Fonts */
+:root {
+  --font-family-catamaran: 'Catamaran', sans-serif;
+  --font-family-openSans: 'Open Sans', sans-serif;
+}
+
+/* Colors */
+:root {
+  --white-color: #ffffff;
+  --darker-white-color: #d7d7d7;
+
+  --white-table-bg-color: #f2f2f2;
+  --white-table-bg-color-2: #f9f9f9;
+  --white-table-border-color: #dddddd;
+
+  --light-gray-color: #ccc;
+  --medium-gray-color: #555;
+  --medium-gray-2-color: #777; 
+  --gray-color: #272727;
+
+  --blue-color: #1890FF;
+  --dark-blue-color: #0056b3;
+
+  --green-color: #47d02b;
+  --dark-green-color: #32901f;
+
+  --red-color: #db2c2c;
+  --dark-red-color: #9a1f1f;
+}
+
+/* Shadows */
+:root {
+  --light-shadow-color: rgba(255, 255, 255, 0.55);
+  --dark-shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+
+/*------------------------------------------------------------------------------*/
+/*                                Common                                        */
+/*------------------------------------------------------------------------------*/
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Set minimum height to 100% of the viewport height */
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family-openSans);
+}
+
+.main {
+  /*Flex Box*/
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+img {
+  height: 100%;
+  max-width: 100%;
+  object-fit:cover;
+}
+
+.btn {
+  height: auto;
+  width: auto;
+  padding: 2px;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.btn:hover {
+  height: auto;
+  width: auto;
+  padding: 2px;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ------------------------------ HEADER ------------------------------ */
+.header {
+  /* Flexbox */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: row;
+  justify-content: space-between; /* Space elements evenly */
+  align-items: center; /* Center items vertically */
+
+  /* Styles */
+  height: 10vh;
+  padding: 10px;
+}
+
+.header__title-link {
+  text-decoration: none;
+  font-weight: 700;
+  color: var(--gray-color);
+  font-size: 24px;
+}
+
+.header__title-link:hover {
+  text-decoration: underline; /* Underline link on hover */
+}
+
+.header__login-link {
+  text-decoration: none;
+  font-weight: 400;
+  color: var(--gray-color);
+}
+
+.header__login-link:hover {
+  color: var(--blue-color);
+}
+
+.header__welcome,
+.header__login {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center items vertically */
+}
+
+.header__welcome {
+  margin-right: 20px; /* Add spacing to the right */
+}
+
+.header__welcome-link {
+  text-decoration: none; /* Remove underline from the link */
+  color: var(--blue-color); /* Link color */
+}
+
+.header__welcome-link:hover {
+  text-decoration: underline; /* Underline link on hover */
+}
+
+/* Styles for Login Section */
+.header__login-link,
+.header__logout-link {
+  text-decoration: none; /* Remove underline from the link */
+  color: var(--blue-color); /* Link color */
+  padding: 5px 10px; /* Add padding for spacing */
+  border: 1px solid var(--blue-color); /* Add border for a button-like appearance */
+  border-radius: 5px; /* Rounded corners for a softer look */
+}
+
+/* Styles for Logout Section on hover */
+.header__login-link:hover,
+.header__logout-link:hover {
+  background-color: var(--blue-color); /* Change background color on hover */
+  color: #fff; /* Change text color on hover */
+}
+
+.right-side {
+  display: flex;
+  flex-direction: row;
+}
+
+/* ------------------------------ NAVIGATION ------------------------------ */
+.navigation {
+  background-color: var(--gray-color);
+  width: 100%;
+  height: 100%;
+}
+
+.navigation__list {
+  margin: 0;
+  padding: 10px;
+  width: 100%;
+  list-style-type: none;
+
+  /* Flexbox */
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.navigation__item {
+  display: inline-block;
+  color: var(--white-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.navigation__item:hover {
+  color: var(--blue-color);
+}
+
+/* ------------------------------ MAIN ------------------------------ */
+main {
+  margin: 20px;
+}
+
+/* **************************************
+ * Vehicle List View
+ * ************************************ */
+/* Container for the entire vehicle list */
+.vehicle-grid__ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(300px, 1fr)); /* Adjust the column width as needed */
+  gap: 20px; /* Adjust the gap between items */
+  list-style: none;
+  padding: 0;
+}
+
+/* Individual vehicle list item */
+.vehicle-grid__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Container for each vehicle card */
+.vehicle-grid-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Set to column to stack items vertically */
+  height: 100%; /* Ensure the card takes up 100% height */
+  width: 150px;
+}
+
+/* Image container within each vehicle card */
+.vehicle-grid-card__image-container {
+  overflow: hidden;
+}
+
+/* Vehicle image within each card */
+.vehicle-grid-card__image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px 8px 0 0; /* Adjust border radius for top corners */
+}
+
+/* Text container within each vehicle card */
+.vehicle-grid-card__text {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center text horizontally */
+}
+
+/* Vehicle title within each card */
+.vehicle-grid-card__title {
+  margin: 0;
+  font-size: 1.2em;
+  text-align: center; /* Center text horizontally */
+}
+
+/* Vehicle price within each card */
+.vehicle-grid-card__price {
+  color: #007bff;
+  font-weight: bold;
+  text-align: center; /* Center text horizontally */
+}
+
+/* Notice for no matching vehicles */
+.vehicle-grid__notice {
+  text-align: center;
+  font-style: italic;
+  color: #777;
+  margin: 20px 0;
+}
+
+
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .vehicle-grid__ul {
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr)); /* Full-width columns on smaller screens */
+  }
+}
+
+
+/* ------------------------------ FOOTER ------------------------------ */
+.footer-line {
+  border-top: .001px solid var(--gray-color);
+}
+
+.footer__copyright {
+  text-align: center;
+  padding: 10px;
+  font-size: smaller;
+}
+
+
+/* Media query for screens 600px and above */
+@media screen and (min-width: 600px) {
+  .header__title-link {
+    font-size: 32px;
+  }
+}
+
+/* Media query for screens 900px and above */
+@media screen and (min-width: 900px) {
+  .header__title-link {
+    font-size: 48px;
+  }
+}
+
+
+
+.record-link-container {
+  display: flex;
+  flex-direction: column;
+}

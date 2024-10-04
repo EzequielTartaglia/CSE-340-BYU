@@ -1,8 +1,53 @@
-<!-- Content Heading -->
-<% if (title) { %>
-    <h1><%= title %></h1>
-    <% } else {
-      res.redirect('/')
-} %>
+<!--**********************************
+ *  Assignment 4: Add Classification Form View
+ * ********************************* -->
 
-<%- include('../inventory-partials/add-classification-partial') %>
+<div class="title-container">
+    <% if (title) { %>
+        <div class="content__heading"><h1><%= title %></h1></div>
+        <%# if (someCondition) { %>
+            <%# messages() %>
+        <%# } %>
+        <% } else {
+            res.redirect('/')
+        } %>
+</div>
+
+<div class="message-container">
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+      <% } %>
+</div>
+
+<div class="main">
+    <!-- Block: login-container -->
+    <div class="cse-motor__form-container form-container">
+        <!-- Block: login-form -->
+        <form action="/inv/add-classification" method="post" class="cse-motor__form">
+            <!-- Block Element: login-form__container -->
+            <div class="cse-motor-form__container">
+                <fieldset>
+                    <legend>Classification Information</legend>
+                    <!-- Block Element: login-form__field -->
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="classification_name" class="form__label">Classification Name:</label>
+                        <!-- Element within Block: form__input -->
+                        <input type="text" placeholder="Enter the classification name" name="classification_name" class="form__input" required>
+                        <span class="form__hint">Note: Classification Name cannot contain a space or special characters of any kind.</span>
+                    </div>
+                </fieldset>
+
+                <!-- Element within Block: btn -->
+                <button type="submit" class="form__button">Add New Classification</button>
+
+                <!-- Element within Block: form__register -->
+                <span class="form__add-classification form-footer-link"><div>Adding new inventory? <a href="add-inventory" class="form__register-link">Add Vehicle</a></div></span>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="title-container">
+    <% if (title) { %>
+        <div class="content__heading"><h1><%= title %></h1></div>
+        <%# if (someCondition) { %>
+            <%# messages() %>
+        <%# } %>
+        <% } else {
+            res.redirect('/')
+        } %>
+</div>
+
+<div class="message-container">
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+      <% } %>
+</div>
+
+<p>Confirm Deletion - The delete is permanent.</p>
+
+<div class="main">
+    <!-- Block: login-container -->
+    <div class="cse-motor__form-container form-container">
+        <!-- Block: login-form -->
+        <form action="/inv/delete" method="post" class="cse-motor__form" id="deleteForm">
+            <!-- Block Element: login-form__container -->
+            <div class="cse-motor-form__container">
+                <fieldset>
+                    <legend>Delete Vehicle</legend>
+        
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_make" class="form__label">Make:</label>
+                        <input
+                            type="text"
+                            name="inv_make"
+                            class="form__input"
+                            pattern="[A-Za-z ]+"
+                            placeholder="Min of 3 characters"
+                            value="<%= locals.inv_make %>"
+                            required
+                            readonly
+                        />
+                    </div>
+        
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_model" class="form__label">Model:</label>
+                        <input
+                            type="text"
+                            name="inv_model"
+                            class="form__input"
+                            pattern="[A-Za-z ]+"
+                            placeholder="Min of 3 characters"
+                            value="<%= locals.inv_model %>"
+                            required
+                            readonly
+                        />
+                    </div>
+        
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_year" class="form__label">Year:</label>
+                        <input
+                            type="text"
+                            name="inv_year"
+                            class="form__input"
+                            pattern="\d{4}"
+                            placeholder="4-digit year"
+                            value="<%= locals.inv_year %>"
+                            required
+                            readonly
+                        />
+                    </div>
+        
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_price" class="form__label">Price:</label>
+                        <input
+                            type="text"
+                            name="inv_price"
+                            class="form__input"
+                            pattern="\d+(\.\d{2})?"
+                            placeholder="Decimal or Integer"
+                            value="<%= locals.inv_price %>"
+                            required
+                            readonly
+                        />
+                    </div>
+                </fieldset>
+        
+                <!-- Element within Block: btn -->
+                <button type="submit" class="form__button">Delete Vehicle</button>
+        
+                <input type="hidden" name="inv_id"
+                    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+                    <% } %>>
+            </div>
+        </form>        
+    </div>
+</div>

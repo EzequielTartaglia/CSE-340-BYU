@@ -1,0 +1,220 @@
+<!-- Assignment 6 -->
+<div class="title-container">
+    <% if (title) { %>
+        <div class="content__heading"><h1><%= title %></h1></div>
+        <%- messages() %>
+        <% } else {
+            res.redirect('/')
+        } %>
+</div>
+
+-- add a Record
+-- delete a Record
+
+
+<div class="main">
+    <div class="cse-motor__form-container form-container">
+        <form action="/maintenance/delete-record" method="post" class="cse-motor__form" id="maintenanceDeleteForm">
+            <div class="cse-motor-form__container">
+                <fieldset>
+                    <legend>Maintenance History</legend>
+
+                    <div class="cse-motor-form__field">
+                        <label for="maintenance_date" class="form__label">Maintenance Date:</label>
+                        <input
+                            type="date"
+                            name="maintenance_date"
+                            class="form__input"
+                            readonly
+                            required
+                        />
+                    </div>
+
+                    <div class="cse-motor-form__field">
+                        <label for="maintenance_type" class="form__label">Maintenance Type:</label>
+                        <input
+                            type="text"
+                            name="maintenance_type"
+                            class="form__input"
+                            readonly
+                            required
+                        />
+                    </div>
+
+                    <div class="cse-motor-form__field">
+                        <label for="maintenance_description" class="form__label">Maintenance Description:</label>
+                        <textarea
+                            name="maintenance_description"
+                            class="form__input"
+                            required
+                            placeholder="A detailed description of the maintenance"
+                            readonly
+                        ></textarea>
+                    </div>
+
+                    <div class="cse-motor-form__field">
+                        <label for="mechanic_id" class="form__label">Mechanic ID:</label>
+                        <input
+                            type="number"
+                            name="mechanic_id"
+                            class="form__input"
+                            readonly
+                            required
+                        />
+                    </div>
+
+                    <div class="cse-motor-form__field">
+                        <label for="cost" class="form__label">Cost:</label>
+                        <input
+                            type="number"
+                            name="cost"
+                            class="form__input"
+                            step="0.01"
+                            readonly
+                            required
+                        />
+                    </div>
+
+                    <div class="cse-motor-form__field">
+                        <label for="parts_replaced" class="form__label">Parts Replaced:</label>
+                        <input
+                            type="text"
+                            name="parts_replaced"
+                            class="form__input"
+                            readonly
+                        />
+                    </div>
+
+                    <div class="cse-motor-form__field">
+                        <label for="notes" class="form__label">Notes:</label>
+                        <textarea
+                            name="notes"
+                            class="form__input"
+                            placeholder="Any additional notes"
+                            readonly
+                        ></textarea>
+                    </div>
+
+                    <div class="cse-motor-form__field">
+                        <label for="inventory_status_type" class="form__label">Status ID:</label>
+                        <input
+                            type="number"
+                            name="status_id"
+                            class="form__input"
+                            required
+                        />
+                    </div>
+                </fieldset>
+
+                <button type="submit" class="form__button">Add Maintenance Record</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+<div class="title-container">
+    <% if (title) { %>
+        <div class="content__heading"><h1><%= title %></h1></div>
+        <%- messages() %>
+        <% } else {
+            res.redirect('/')
+        } %>
+</div>
+
+<div class="message-container">
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+      <% } %>
+</div>
+
+<p>Confirm Deletion - The delete is permanent.</p>
+
+<div class="main">
+    <!-- Block: login-container -->
+    <div class="cse-motor__form-container form-container">
+        <!-- Block: login-form -->
+        <form action="/inv/delete" method="post" class="cse-motor__form" id="deleteForm">
+            <!-- Block Element: login-form__container -->
+            <div class="cse-motor-form__container">
+                <fieldset>
+                    <legend>Delete Vehicle</legend>
+        
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_make" class="form__label">Make:</label>
+                        <input
+                            type="text"
+                            name="inv_make"
+                            class="form__input"
+                            pattern="[A-Za-z ]+"
+                            placeholder="Min of 3 characters"
+                            value="<%= locals.inv_make %>"
+                            required
+                            readonly
+                        />
+                    </div>
+        
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_model" class="form__label">Model:</label>
+                        <input
+                            type="text"
+                            name="inv_model"
+                            class="form__input"
+                            pattern="[A-Za-z ]+"
+                            placeholder="Min of 3 characters"
+                            value="<%= locals.inv_model %>"
+                            required
+                            readonly
+                        />
+                    </div>
+        
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_year" class="form__label">Year:</label>
+                        <input
+                            type="text"
+                            name="inv_year"
+                            class="form__input"
+                            pattern="\d{4}"
+                            placeholder="4-digit year"
+                            value="<%= locals.inv_year %>"
+                            required
+                            readonly
+                        />
+                    </div>
+        
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_price" class="form__label">Price:</label>
+                        <input
+                            type="text"
+                            name="inv_price"
+                            class="form__input"
+                            pattern="\d+(\.\d{2})?"
+                            placeholder="Decimal or Integer"
+                            value="<%= locals.inv_price %>"
+                            required
+                            readonly
+                        />
+                    </div>
+                </fieldset>
+        
+                <!-- Element within Block: btn -->
+                <button type="submit" class="form__button">Delete Vehicle</button>
+        
+                <input type="hidden" name="inv_id"
+                    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+                    <% } %>>
+            </div>
+        </form>        
+    </div>
+</div>

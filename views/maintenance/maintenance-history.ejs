@@ -1,0 +1,30 @@
+<!--**********************************
+ *  Assignment 4: Vehicle Management View
+ * ********************************* -->
+
+<div class="title-container">
+    <% if (title) { %>
+        <div class="content__heading"><h1><%= title %></h1></div>
+        <%# if (someCondition) { %>
+            <%# messages() %>
+        <%# } %>
+        <% } else {
+            res.redirect('/')
+        } %>
+</div>
+
+<div class="management-button-container">
+    <%# managementButtons %>
+</div>
+
+<div class="inventoryManagement-container">
+    <h2 class="content__heading"> View Records </h2>
+    <p class="inventoryManagmentParagraph">Choose Record to view, edit, or delete.</p>
+    <%- vehicleInventoryList %>
+
+    <table id="recDisplay" class="recDisplay"></table>
+</div>
+
+<noscript>JavaScript must be enabled to use this page.</noscript>
+
+<script src="../../js/maintenance.js"></script>

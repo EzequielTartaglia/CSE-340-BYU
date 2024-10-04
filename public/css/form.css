@@ -1,0 +1,272 @@
+/*------------------------------------------------------------------------------*/
+/*                              Form Styles                                   */
+/*------------------------------------------------------------------------------*/
+.form-container {
+    margin-top: 12px;
+    margin-bottom: 30px;
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+  
+  /* Block: login-container */
+  .cse-motor__form-container {
+    background-color: var(--white-color);
+    border-radius: 8px;
+    box-shadow: 0 0 10px var(--dark-shadow-color);
+    overflow: hidden;
+    width: 350px;
+  }
+  
+  /* Block: login-form */
+  .cse-motor__form {
+    padding: 20px;
+  }
+  
+  /* Block Element: login-form__container */
+  .cse-motor-form__container {
+    padding: 20px;
+  }
+  
+  /* Element within Block: form__label */
+  .form__label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--medium-gray-color);
+  }
+  
+  /* Element within Block: form__input */
+  .form__input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid var(--light-gray-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Element within Block: form__hint */
+  /*
+  .form__hint {
+    font-size: 12px;
+    color: var(--medium-gray-2-color);
+    margin-bottom: 8px;
+    display: block;
+  }*/
+  
+  .form__hint {
+    color: #ff0000; /* Set the text color to red or any other color you prefer */
+    font-size: 14px; /* Adjust the font size as needed */
+    font-style: italic; /* Apply italic style for emphasis */
+  }
+  
+  /* Element within Block: btn */
+  .form__button {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: var(--white-color);
+    background-color: var(--blue-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .form__button:hover {
+    background-color: var(--dark-blue-color);
+  }
+  
+  /* Element within Block: form__register */
+  .form__register {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Element within Block: form__register-link */
+  .form__register-link,
+  .form__login-link {
+    color: var(--blue-color);
+    text-decoration: none;
+  }
+  
+  .form__register-link:hover,
+  .form__login-link:hover {
+    text-decoration: underline;
+  }
+  
+  .cse-motor-form__field {
+    margin-bottom: 10px;
+  }
+  
+  input:required:invalid, input:focus:invalid {
+    background-image: url(/images/invalid.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+   }
+   
+  input:required:valid {
+    background-image: url(/images/valid.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+    }
+  
+  fieldset {
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--light-gray-color);
+  }
+  
+  legend {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+.management-button-container{
+  margin-left: 20px;
+}
+
+.management__button {
+  margin-bottom: 10px;
+  padding: 12px;
+  font-size: 16px;
+  color: var(--white-color);
+  background-color: var(--blue-color);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.management__button:hover {
+  background-color: var(--dark-blue-color);
+}
+
+.management-button-link {
+  color: var(--white-color);
+  text-decoration: none;
+}
+
+
+.inventoryManagement-container {
+  margin: 20px;
+}
+
+/* Style for the entire table */
+#invDisplay {
+width: 100%;
+border-collapse: collapse;
+margin-top: 20px;
+}
+
+/* Style for table header */
+#invDisplay th {
+background-color: var(--white-table-bg-color);
+border: 1px solid var(--white-table-border-color);
+padding: 8px;
+text-align: left;
+}
+
+/* Style for table data rows */
+#invDisplay td {
+border: 1px solid var(--white-table-border-color);
+padding: 8px;
+}
+
+/* Style for alternating row colors */
+#invDisplay tbody tr:nth-child(even) {
+background-color: var(--white-table-bg-color-2);
+}
+
+.management-modify-button,
+.management-delete-button {
+margin-bottom: 10px;
+padding: 12px;
+font-size: 16px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+text-align: center;
+}
+
+.management-modify-button {
+background-color: var(--green-color);
+}
+
+.management-modify-button:hover {
+background-color: var(--dark-green-color);
+}
+
+.management-delete-button {
+background-color: var(--red-color);
+}
+
+.management-delete-button:hover {
+background-color: var(--dark-red-color);
+}
+
+.modify,
+.delete {
+color: var(--white-color);
+text-decoration: none;
+}
+
+select {
+font-size: 14px;
+padding: 8px;
+border: 1px solid #ccc;
+border-radius: 4px;
+background-color: #fff;
+color: #333;
+outline: none;
+transition: border-color 0.3s;
+}
+
+select:hover,
+select:focus {
+border-color: #007bff;
+}
+
+.inventoryManagmentParagraph {
+margin-bottom: 10px;
+}
+
+/* CSS Styles for Account Management Container */
+.accountManagement-container {
+margin: 20px; /* Add margin for spacing */
+padding: 20px; /* Add padding for spacing */
+border: 1px solid #ccc; /* Add a border for visual separation */
+border-radius: 5px; /* Rounded corners for a softer look */
+background-color: #f8f8f8; /* Light background color */
+}
+
+/* Styles for the Welcome message */
+.accountManagement-container h2 {
+color: #333; /* Dark text color */
+margin-bottom: 10px; /* Add spacing below the heading */
+}
+
+/* Styles for the Management Links */
+.accountmanagement-links {
+margin-bottom: 15px; /* Add spacing below the links */
+}
+
+.accountmanagement-links a {
+display: block; /* Make the links block-level for better spacing */
+margin-bottom: 5px; /* Add spacing between links */
+text-decoration: none; /* Remove underline from links */
+color: #0066cc; /* Link color */
+}
+
+.accountmanagement-links a:hover {
+text-decoration: underline; /* Underline links on hover */
+}
+
+/* Styles for the Inventory Management heading */
+.accountManagement-container h3 {
+color: #333; /* Dark text color */
+margin-top: 20px; /* Add spacing above the heading */
+margin-bottom: 10px; /* Add spacing below the heading */
+}

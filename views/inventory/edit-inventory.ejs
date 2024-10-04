@@ -1,0 +1,176 @@
+<div class="title-container">
+    <% if (title) { %>
+        <div class="content__heading"><h1><%= title %></h1></div>
+        <%# messages() %>
+        <% } else {
+            res.redirect('/')
+        } %>
+</div>
+
+<div class="message-container">
+    <% if (errors) { %>
+        <ul class="notice">
+       <% errors.array().forEach(error => { %>
+         <li><%= error.msg %></li>
+      <%  }) %>
+       </ul>
+      <% } %>
+</div>
+
+<div class="main">
+    <!-- Block: login-container -->
+    <div class="cse-motor__form-container form-container">
+        <!-- Block: login-form -->
+        <form action="/inv/update" method="post" class="cse-motor__form" id="updateForm">
+            <!-- Block Element: login-form__container -->
+            <div class="cse-motor-form__container">
+                <fieldset>
+                    <legend>Update Classification Info</legend>
+
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="classification_name" class="form__label">Classification Name:</label>
+                        <%- classificationList %>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Update Inventory Details</legend>
+
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_make" class="form__label">Make:</label>
+                        <input
+                        type="text"
+                        name="inv_make"
+                        class="form__input"
+                        pattern="[A-Za-z ]+"
+                        placeholder="Min of 3 characters"
+                        value="<%= locals.inv_make %>"
+                        required
+                        />
+                    </div>
+    
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_model" class="form__label">Model:</label>
+                        <input
+                        type="text"
+                        name="inv_model"
+                        class="form__input"
+                        pattern="[A-Za-z ]+"
+                        placeholder="Min of 3 characters"
+                        value="<%= locals.inv_model %>"
+                        required
+                        />
+                    </div>
+    
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_year" class="form__label">Year:</label>
+                        <input
+                        type="text"
+                        name="inv_year"
+                        class="form__input"
+                        pattern="\d{4}"
+                        placeholder="4-digit year"
+                        value="<%= locals.inv_year %>"
+                        required
+                        />
+                    </div>
+    
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_description" class="form__label">Description:</label>
+                        <textarea
+                        name="inv_description"
+                        class="form__input"
+                        placeholder="A detailed description of the item"
+                        required
+                        ><%= locals.inv_description %></textarea>
+                    </div>
+    
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_image" class="form__label">Image:</label>
+                        <input
+                        type="text"
+                        name="inv_image"
+                        class="form__input"
+                        pattern=".*\.(png|jpg|jpeg|webp)$"
+                        placeholder="/images/vehicles/no-image.png"
+                        value="<%= locals.inv_image %>"
+                        required
+                        />
+                    </div>
+    
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_thumbnail" class="form__label">Thumbnail:</label>
+                        <input
+                        type="text"
+                        name="inv_thumbnail"
+                        class="form__input"
+                        pattern=".*\.(png|jpg|jpeg|webp)$"
+                        placeholder="/images/vehicles/no-image.png"
+                        value="<%= locals.inv_thumbnail %>"
+                        required
+                        />
+                    </div>
+    
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_price" class="form__label">Price:</label>
+                        <input
+                        type="text"
+                        name="inv_price"
+                        class="form__input"
+                        pattern="\d+(\.\d{2})?"
+                        placeholder="Decimal or Integer"
+                        value="<%= locals.inv_price %>"
+                        required
+                        />
+                    </div>
+    
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_color" class="form__label">Color:</label>
+                        <input
+                        type="text"
+                        name="inv_color"
+                        class="form__input"\
+                        pattern="[A-Za-z ]+"
+                        placeholder="e.g., red"
+                        value="<%= locals.inv_color %>"
+                        required
+                        />
+                    </div>
+    
+                    <div class="cse-motor-form__field">
+                        <!-- Element within Block: form__label -->
+                        <label for="inv_miles" class="form__label">Miles:</label>
+                        <input
+                        type="text"
+                        name="inv_miles"
+                        class="form__input"
+                        pattern="\d+"
+                        placeholder="Digits only"
+                        value="<%= locals.inv_miles %>"
+                        required
+                        />
+                    </div>
+
+                </fieldset>
+
+                <!-- Element within Block: btn -->
+                <button type="submit" class="form__button" disabled>Modify Vehicle</button>
+
+                <input type="hidden" name="inv_id"
+                <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+                <% } %>>
+                </div>
+        </form>
+    </div>
+</div>
+
+<script src="../../js/inv-update.js"></script>
