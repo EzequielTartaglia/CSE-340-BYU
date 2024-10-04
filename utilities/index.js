@@ -1,10 +1,9 @@
 const invModel = require("../models/inventory-model")
 const Util = {}
-require("dotenv").config()
 
-/* ************************
+/* **************************************
  * Constructs the nav HTML unordered list
- ************************** */
+ ************************************** */
 Util.getNav = async function (req, res, next) {
   let data = await invModel.getClassifications()
   let list = "<ul>"
@@ -25,30 +24,6 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
-
-/* ***************************
- * Constructs the drop down list of classifications
- * *************************** */
-Util.getClassificationSelect = async function (classification_id = null) {
-  let data = await invModel.getClassifications()
-  let classificationList = 
-  '<select name="classification_id" id="classification_list">'
-  classificationList += '<option>Choose a classification</option>'
-  data.rows.forEach((row) => {
-    classificationList += '<option value="' + row.classification_id + '"'
-    if (
-      classification_id != null &&
-      row.classification_id == classification_id
-    ) {
-      classificationList += " selected "
-    }
-    classificationList += ">" + row.classification_name + "</option>"
-  })
-  classificationList += "</select>"
-  return classificationList
-}
-
-
 /* **************************************
 * Build the classification view HTML
 * ************************************ */
@@ -58,21 +33,21 @@ Util.buildClassificationGrid = async function(data){
     grid = '<ul id="inv-display">'
     data.forEach(vehicle => { 
       grid += '<li>'
-      grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
-      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
-      +'" alt="' + vehicle.inv_make + ' ' + vehicle.inv_model 
-      +' on CSE Motors"></a>'
-      grid += '<div class="namePrice">'
-      grid += '<hr>'
-      grid += '<h2>'
-      grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
-      grid += '</h2>'
-      grid += '<span>$' 
-      + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
-      grid += '</div>'
+        grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
+        + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
+        + 'details"><img src="' + vehicle.inv_thumbnail 
+        +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
+        +' on CSE Motors"></a>'
+        grid += '<div class="namePrice">'
+          grid += '<hr>'
+          grid += '<h2>'
+            grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
+            + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
+            + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
+          grid += '</h2>'
+          grid += '<span>$' 
+          + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
+        grid += '</div>'
       grid += '</li>'
     })
     grid += '</ul>'
@@ -82,27 +57,46 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+// format price in money format
+const money = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  maximumFractionDigits: 0
+});
+
 /* **************************************
-Build the vehicle detail view HTML
-************************************ */
-Util.buildVehicleDetail = async function(data){
-  let detail = '<div id="detail-display">'
-  detail += '<div id="detail-display-image">'
-  detail += '<img src="' + data.inv_image + '" alt="' 
-  + data.inv_make + ' ' + data.inv_model + '"> '
-  detail += '</div>'
-  detail += '<div id="detail-display-info">'
-  detail += '<h2>' + 'Year: ' + data.inv_year + '</h2>'
-  detail += '<hr>'
-  detail += '<h2>$' + new Intl.NumberFormat('en-US').format(data.inv_price) + '</h2>'
-  detail += '<p>' + data.inv_description + '</p>'
-  detail += '<ul>'
-  detail += '<li><strong>Mileage:</strong> ' + new Intl.NumberFormat('en-US').format(data.inv_miles) + '</li>'
-  detail += '<li><strong>Color:</strong> ' + data.inv_color + '</li>'
-  detail += '</ul>'
-  detail += '</div>'
-  detail += '</div>'
-  return detail
+* Build the item details view HTML
+* ************************************ */
+Util.buildInventoryDisplay = async function(data){
+  let grid
+  let d = data[0]
+  if(data.length > 0){
+    grid = '<div id="inv-item-detail">'
+      grid += '<div class="detail-img">'
+        grid +=  '<img src="' + d.inv_image 
+          + '" alt="Image of ' + d.inv_year + " " + d.inv_make + " " + d.inv_model
+          + ' on CSE Motors">'
+      grid += '</div>'
+      grid += '<div class="general-information">'
+        grid += '<h3>' + d.inv_make + " " + d.inv_model + ' Details</h3>'
+        grid += '<p><span>Price: ' + money.format(d.inv_price) + '</span></p>'
+        grid += '<p><span>Description: </span>' + d.inv_description + '</p>'
+        grid += '<p><span>Color: </span>' + d.inv_color + '</p>'
+        grid += '<p><span>Miles: </span>' + d.inv_miles.toLocaleString('en-US') + '</p>'
+      grid += '</div>'
+    grid += '</div>'
+  } else { 
+    grid += '<p class="notice">Sorry, no matching vehicle could be found.</p>'
+  }
+  return grid
+}
+
+/* **************************************
+* Build error page view HTML
+* ************************************ */
+Util.buildErrorPage = async function(){
+  let grid = '<p>The Error route is connected correctly.</p>'
+  return grid
 }
 
 /* ****************************************
@@ -113,4 +107,4 @@ Util.buildVehicleDetail = async function(data){
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 
-module.exports = Util
+module.exports = Util;

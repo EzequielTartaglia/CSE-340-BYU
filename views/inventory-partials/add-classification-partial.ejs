@@ -1,0 +1,23 @@
+<div class="add-classification-section">
+    <div class="add-classification-div">
+        <%- messages() %>
+        <% //console.log(":::::::: " + JSON.stringify(errors)) %>
+        <% if (errors !== undefined && Array.isArray(errors) && errors.length) { %>
+        <ul class="notice">
+        <% errors.array().forEach(error => { %>
+            <li><%= error.msg %></li>
+        <%  }) %>
+        </ul>
+        <% } %>
+
+        <form id="add-classification-form" action="/inv/process-add-classification" method="post">
+            <label for="classification_name">New Classification</label>
+            <input type="text" name="classification_name" id="classification_name" 
+                pattern="^[a-zA-Z0-9]+$" required
+                value="<%= locals.classification_name %>">
+            <span>New classification names cannot contain a spaces or special characters.</span>
+            <button>Add</button>
+        </form>
+
+    </div>
+</div>

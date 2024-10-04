@@ -1,9 +1,12 @@
-<%# The Content Heading %> 
-
+<!-- Set title if exists -->
 <% if (title) { %>
 <h1><%= title %></h1>
-<% } else { res.redirect('/') } %> 
+<% } else {
+    res.redirect('/')
+} %>
 
-<%# messages() %> 
+<!-- Message output -->
+<%# messages() %>
 
-<%- detail %> <%# The Inventory Item Detail %>
+<!-- main view content output -->
+<%- grid %>

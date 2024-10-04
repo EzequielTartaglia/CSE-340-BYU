@@ -7,31 +7,96 @@ const invCont = {}
  *  Build inventory by classification view
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
-  const classification_id = req.params.classificationId
-  const data = await invModel.getInventoryByClassificationId(classification_id)
-  const grid = await utilities.buildClassificationGrid(data)
-  let nav = await utilities.getNav()
-  const className = data[0].classification_name
-  res.render("./inventory/classification", {
-    title: className + " vehicles",
-    nav,
-    grid,
-  })
+    const classification_id = req.params.classificationId
+    const data = await invModel.getInventoryByClassificationId(classification_id)
+    const grid = await utilities.buildClassificationGrid(data)
+    let nav = await utilities.getNav()
+    const className = data[0].classification_name
+    res.render("./inventory/classification", {
+      title: className + " Vehicles",
+      nav,
+      grid,
+    })
 }
 
 /* ***************************
-*  Build a specific vehicle detail view
-* ************************** */
-invCont.buildVehicleDetail = async function (req, res, next) {
-  const inv_id = req.params.invId
-  const data = await invModel.getVehicleDetails(inv_id)
-  const detail = await utilities.buildVehicleDetail(data)
+ *  Build inventory item detail view
+ * ************************** */
+invCont.buildByInventoryId = async function (req, res, next) {
+    const inv_id = req.params.inventoryId
+    const data = await invModel.getInventoryByInventoryId(inv_id)
+    const grid = await utilities.buildInventoryDisplay(data)
+    let nav = await utilities.getNav()
+    let d = data[0]
+    const className = d.inv_year + " " + d.inv_make + " " + d.inv_model
+    res.render("./inventory/detail", {
+      title: className,
+      nav,
+      grid,
+    })
+}
+
+/* *****************************
+ *  Build inventory management page
+ * **************************** */
+invCont.buildInvManagement = async function (req, res, next) {
   let nav = await utilities.getNav()
-  res.render("./inventory/detail", {
-    title: data.inv_make + " " + data.inv_model,
+  res.render("./inventory/management", {
+    title: "Inventory Management",
     nav,
-    detail,
+    errors: null,
   })
 }
 
-module.exports = invCont
+/* *****************************
+ *  Build add classification page
+ * **************************** */
+invCont.buildAddClassification = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-classification", {
+    title: "Add Classification",
+    nav,
+    errors: null,
+  })
+}
+
+/* ****************************************
+*  Process Add Classification
+* *************************************** */
+invCont.processAddNewClassification = async function (req, res, next) {
+  const { classification_name } = req.body
+  const result = await invModel.addNewClassification(classification_name)
+
+  console.log("*********** :: " + JSON.stringify(result))
+  if (result) {
+    let nav = await utilities.getNav()
+    req.flash('notice', `${classification_name} successfully added.`)
+    res.status(201).render("./inventory/add-classification", {
+      title: "Add Classification",
+      nav,
+      errors: [],
+    })
+  } else {
+    let nav = await utilities.getNav()
+    req.flash("notice", "Something went wrong.")
+    res.status(501).render("./inventory/add-classification", {
+      title: "Add Classification",
+      nav,
+      errors: [],
+    })
+  }
+}
+
+/* *****************************
+ *  Build add inventory page
+ * **************************** */
+invCont.buildAddInventory = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-inventory", {
+    title: "Add Inventory",
+    nav,
+    errors: [],
+  })
+}
+
+module.exports = invCont;

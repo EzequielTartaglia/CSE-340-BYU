@@ -1,0 +1,17 @@
+<div class="management-section">
+    <div class="management-div">
+        <%- messages() %>
+        <% if (errors) { %>
+        <ul class="notice">
+        <% errors.array().forEach(error => { %>
+            <li><%= error.msg %></li>
+        <%  }) %>
+        </ul>
+        <% } %>
+
+        <div class="button-div">
+            <button><a href="/inv/add-classification">Add New Classification</a></button>
+            <button><a href="/inv/add-inventory">Add New Inventory</a></button>
+        </div>
+    </div>
+</div>
