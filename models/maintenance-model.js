@@ -112,7 +112,6 @@ async function retrieveAllMechanicsById() {
   return data;
 }
 
-
 module.exports = {
                   retrieveAllInventoryReports,
                   retrieveAllVehicleInventory,

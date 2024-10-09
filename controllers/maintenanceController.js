@@ -15,7 +15,6 @@ mainCont.buildViewMaintenanceHistoryManagement = async (req, res, next) => {
     })
 }
 
-
 /* ***************************
  *  buildViewGetAllReports - as a list
  * ************************** */
