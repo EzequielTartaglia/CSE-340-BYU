@@ -17,15 +17,13 @@ const cookieParser = require("cookie-parser")
 
 // Routes
 const static = require("./routes/static")
-const inventoryRoute = require("./routes/inventoryRoute") // brings inventoryRoute.js file into scope.
+const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
 
-//Assignment 6
 const maintenanceRoute = require("./routes/maintenanceRoute")
 
 // Controllers
-const baseController = require("./controllers/baseController"); // brings baseController.js into Scope.
-
+const baseController = require("./controllers/baseController"); 
 
 
 /* ***********************
