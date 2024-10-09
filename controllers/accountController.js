@@ -235,5 +235,4 @@ accountController.logoutAccount = async (req, res, next) => {
   return
 }
 
-
 module.exports = accountController;
