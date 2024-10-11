@@ -1,0 +1,85 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+ <%- messages() %>
+ 
+ <% if (errors) { %>
+    <ul class="notice">
+       <% errors.array().forEach(error => { %>
+          <li><%= error.msg %></li>
+       <% }) %>
+    </ul>
+    <% } %>
+ 
+    <%- inboxMessage %>
+ 
+    <hr>
+ 
+    <p id="return"><a href="/message/inbox/">Return to Inbox</a></p>
+ 
+    <div class="addInventory" id="replyForm">
+       <form id="reply-form" action="/message/messageView/reply" method="post">
+          <%- reply %>
+          <div class="inputField">
+             <label for="message_body">Message:</label>
+             <textarea name="message_body" id="message_body" rows="4" cols="50" maxlength="100" required></textarea>
+          </div>
+          
+          <input type="hidden" name="message_id" value="<%= locals.message_id %>">
+          <input type="hidden" name="account_id"
+          <% if(locals.accountData.account_id) { %> 
+             value="<%= locals.accountData.account_id %>"
+          <% } %>>
+          <div class="btnContainer">
+             <button class="formBtn" id="cancel">Cancel</button>
+             <button type="submit" class="formBtn">Send</button>
+          </div>
+       </form>
+    </div>
+ 
+    <div class="replyBtnContainer">
+       <button id="reply" class="formBtn">Reply</button>
+    
+       <form action="/message/messageView/read" method="post">
+          <input type="hidden" name="message_id" value="<%= locals.message_id %>">
+          <input type="hidden" name="account_id"
+          <% if(locals.accountData.account_id) { %> 
+             value="<%= locals.accountData.account_id %>"
+          <% } %>>
+          <button type="submit" class="formBtn">Mark as Read</button>
+       </form>
+    
+       <form action="/message/messageView/archived" method="post">
+          <input type="hidden" name="message_id" value="<%= locals.message_id %>">
+          <input type="hidden" name="account_id"
+          <% if(locals.accountData.account_id) { %> 
+             value="<%= locals.accountData.account_id %>"
+          <% } %>>
+          <button type="submit" class="formBtn">Archive Message</button>
+       </form>
+    
+       <form action="/message/messageView/delete" method="post">
+          <input type="hidden" name="message_id" value="<%= locals.message_id %>">
+          <input type="hidden" name="account_id"
+          <% if(locals.accountData.account_id) { %> 
+             value="<%= locals.accountData.account_id %>"
+          <% } %>>
+          <button type="submit" class="formBtn">Delete Message</button>
+       </form>
+    </div>
+ 
+    
+    
+ <script>
+   document.getElementById("reply").onclick = function () {
+     document.getElementById("replyForm").style.display = "block";
+     document.getElementById("reply").style.display = "none";
+   };
+ 
+   document.getElementById("cancel").onclick = function () {
+    document.getElementById("replyForm").style.display = "none";
+     document.getElementById("reply").style.display = "block";
+   }
+ </script>

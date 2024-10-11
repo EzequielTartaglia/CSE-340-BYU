@@ -19,8 +19,7 @@ const cookieParser = require("cookie-parser")
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
-
-const maintenanceRoute = require("./routes/maintenanceRoute")
+const messageRoute = require("./routes/messageRoute")
 
 // Controllers
 const baseController = require("./controllers/baseController"); 
@@ -82,10 +81,8 @@ app.use("/inv", Util.handleErrors(inventoryRoute))
 // Account routes
 app.use("/account", Util.handleErrors(accountRoute))
 
-
-// Assignment 6
-// Maintenance routes
-app.use("/maintenance", Util.handleErrors(maintenanceRoute))
+// Message route
+app.use("/message", Util.handleErrors(messageRoute))
 
 /* ***********************
 * Basic Error Handling Activity
