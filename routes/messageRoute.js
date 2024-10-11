@@ -62,5 +62,4 @@ router.post(
    utilities.handleErrors(messageController.replyMessage)
 )
 
-
 module.exports = router;

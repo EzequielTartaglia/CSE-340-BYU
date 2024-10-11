@@ -159,5 +159,4 @@ res.status(501).redirect("/message/messageView/"+message_id)
   }
  }
 
-
   module.exports = {inboxView, newMessageView, archivedMessageView, addMessage, messageView, markAsRead, markAsArchived, deleteMessage, replyMessage}
