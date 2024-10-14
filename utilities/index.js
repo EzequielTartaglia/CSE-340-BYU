@@ -50,54 +50,45 @@ Util.getNavigation = async function (req, res, next) {
 // **************************************
 // Purpose: builds a list of vehicles based on the provided data array.
 Util.buildVehiclesListView = async function (data) {
-  let grid;
-
+  let grid = '<ul class="vehicle-grid__ul">';
+  
   if (data.length > 0) {
-    // Element within Block: vehicle-grid__ul-style
-    grid = '<ul class="vehicle-grid__ul">';
-
-    data.forEach(vehicle => {
-      // Element within Block: vehicle-grid__li
-      grid += '<li class="vehicle-grid__item">'; // Start of li
-      grid += '<div class="vehicle-grid-card grid-cards">'; // start of vehicle grid div inv-display__image-info-container
-
-      // Element within Block: vehicle-grid-card__image-container
-      grid += '<div class="vehicle-grid-card__image-container">'; // start of vehicle grid image-container div
-      grid += '<a href="../../inv/detail/' + vehicle.inv_id +
-        '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model +
-        ' details" class="vehicle-grid-card__image-link"><img src="' + vehicle.inv_thumbnail +
-        '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model +
-        ' on CSE Motors" class="vehicle-grid-card__image"/></a>';
-      grid += '</div>'; // End of vehicle grid image-container div
-
-      // Element within Block: vehicle-grid-card__text
-      grid += '<div class="vehicle-grid-card__text">'; // start of namePrice div
-
-      grid += '<h1 class="vehicle-grid-card__title">';
-      grid += '<a href="../../inv/detail/' + vehicle.inv_id + '" title="View ' +
-        vehicle.inv_make + ' ' + vehicle.inv_model + ' details" class="vehicle-grid-card__link">' +
-        vehicle.inv_make + ' ' + vehicle.inv_model + ' </a>';
-      grid += '</h1>';
-
-      grid += '<span class="vehicle-grid-card__price">$' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>';
-      grid += '</div>'; // End of vehicle grid text div
-
-      grid += '</div>'; // End of vehicle grid container div
-
-      grid += '</li>'; // End of li
-    });
-    grid += '</ul>';
+      data.forEach(vehicle => {
+          grid += `
+              <li class="vehicle-grid__item">
+                  <div class="vehicle-grid-card grid-cards">
+                      <div class="vehicle-grid-card__image-container">
+                          <a href="../../inv/detail/${vehicle.inv_id}" 
+                             title="View ${vehicle.inv_make} ${vehicle.inv_model} details" 
+                             class="vehicle-grid-card__image-link">
+                              <img src="${vehicle.inv_thumbnail}" 
+                                   alt="Image of ${vehicle.inv_make} ${vehicle.inv_model} on CSE Motors" 
+                                   class="vehicle-grid-card__image"/>
+                          </a>
+                      </div>
+                      <div class="vehicle-grid-card__text">
+                          <h1 class="vehicle-grid-card__title">
+                              <a href="../../inv/detail/${vehicle.inv_id}" 
+                                 title="View ${vehicle.inv_make} ${vehicle.inv_model} details" 
+                                 class="vehicle-grid-card__link">
+                                 ${vehicle.inv_make} ${vehicle.inv_model}
+                              </a>
+                          </h1>
+                          <span class="vehicle-grid-card__price">
+                              $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}
+                          </span>
+                      </div>
+                  </div>
+              </li>`;
+      });
   } else {
-    // Element within Block: vehicle-grid__li
-    grid += '<li class="vehicle-grid__item">';
-    // Element within Block: notice
-    grid += '<p class="vehicle-grid__notice">Sorry, no matching vehicles could be found.</p>';
-    grid += '</li>';
+      grid += '<li class="vehicle-grid__item"><p class="vehicle-grid__notice">Sorry, no matching vehicles could be found.</p></li>';
   }
 
-  // returns the variable to the calling location.
+  grid += '</ul>';
   return grid;
 };
+
 
 
 /* **************************************
@@ -105,43 +96,34 @@ Util.buildVehiclesListView = async function (data) {
  * ************************************ */
 // Prupose: builds the vehicle detail view  
 Util.buildVehicleDetailview = async function(data) {
-    let grid = '';
+  let grid = '';
 
-    if (data.length > 0) {
-        data.forEach(vehicle => {
-            // Block: vehicle-detail-card
-            grid += '<div class="vehicle-detail-card__container">'; // Start of container div
+  if (data.length > 0) {
+      data.forEach(vehicle => {
+          grid += `
+              <div class="vehicle-detail-card__container">
+                  <div class="vehicle-detail-card__content">
+                      <div class="vehicle-detail-card__image-container">
+                          <img src="${vehicle.inv_image}" 
+                               alt="${vehicle.inv_make} ${vehicle.inv_model}" 
+                               class="vehicle-detail-card__image"/>
+                      </div>
+                      <div class="vehicle-detail-card__text">
+                          <p>Availability: ${vehicle.vehicle_status_type}</p>
+                          <p>Year: ${vehicle.inv_year}</p>
+                          <p>Price: $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>
+                          <p>Mileage: ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)}</p>
+                      </div>
+                  </div>
+              </div>`;
+      });
+  } else {
+      grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>';
+  }
 
-            // Element within Block: vehicle-detail-card__title
-            //grid += `<div class="vehicle-detail-card__title"><h1>${vehicle.inv_make} ${vehicle.inv_model}</h1></div>`; // title div
-
-            // Element within Block: vehicle-detail-card__content
-            grid += `<div class="vehicle-detail-card__content">` // Start of vehicle detail content div
-
-            // Element within Block: vehicle-detail-card__image
-            grid += `<div class="vehicle-detail-card__image-container">` // Start of vehicle detail image div
-            grid += `<img src=" ${vehicle.inv_image}" alt="${vehicle.inv_make} ${vehicle.inv_model}" class="vehicle-detail-card__image">`;
-            grid += '</div>'; // End of vehicle detail image div
-
-            // Element within Block: vehicle-detail-card__text
-            grid += `<div class="vehicle-detail-card__text">` // Start of vehicle detail text div
-            grid += `<p>Availability: ${vehicle.vehicle_status_type}</p>`;
-            grid += `<p>Year: ${vehicle.inv_year}</p>`;
-            grid += `<p>Price: $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</p>`;
-            grid += `<p>Mileage: ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)}</p>`;
-            grid += `</div>`; // End of vehicle detail text div
-
-            grid += `</div>`; // End of vehicle detail content div
-
-            grid += '</div>'; // End of vehicle detail container div
-        });
-    } else {
-        // Element within Block: notice
-        grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>';
-    }
-
-    return grid;
+  return grid;
 };
+
 
 
 /* **************************************
