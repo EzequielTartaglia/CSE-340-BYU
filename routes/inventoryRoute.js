@@ -36,7 +36,6 @@ router.get("/add-inventory", invController.buildViewInventoryForm)
 // Route to get the management view
 router.get('/', 
     Util.checkLogin,
-    Util.checkAccountType,
     Util.handleErrors(invController.buildViewInventoryManagement)
 );
 
