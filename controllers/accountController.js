@@ -132,51 +132,63 @@ accountController.processAccountLogin = async function (req, res) {
       return new Error('Access Forbidden')
   }
 }
-
 /* ****************************************
  *  Process Account Update
  * *************************************** */
 accountController.processAccountUpdate = async (req, res, next) => {
-  let nav = await Util.getNavigation()
-  const 
-  { 
-    account_firstname, 
-    account_lastname, 
-    account_email,
-    account_password, 
-    account_id 
-  } = req.body
-  
-  const regResult = await accountModel.updateAccountInfo(account_firstname, account_lastname, account_email, account_password, account_id)
-  if (regResult) {
-    // flash message that the update was successful
-    res.clearCookie("jwt")
-    const accountData = await accountModel.retrieveUserAccountById(account_id)
-    // use .env secret key to sign, expires in one hour
-    const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
-    // can only be passed through http requests, maximum age is 1 hour
-    res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+  try {
+    let nav = await Util.getNavigation();
+    const { account_firstname, account_lastname, account_email, account_id } = req.body;
 
-    req.flash("success", `Congratulations, ${accountData.account_firstname} you\'ve succesfully updated your account info.`)
-    res.status(201).render("account/account-management", {
-      title: "Edit Account",
-      nav,
-      errors:null,
-      account_firstname,
-      account_lastname,
-      account_email,
-    })
-  } else {
-    req.flash("error", "Sorry, the update failed.")
-    // render account edit view again
-    res.status(501).render("account/edit-account", {
+    // Actualizar la información de la cuenta
+    const regResult = await accountModel.updateAccountInfo(account_firstname, account_lastname, account_email, account_id);
+    console.log('Reg Result:', regResult); // Verifica el resultado
+
+    // Verificar que regResult sea igual a 1 para indicar éxito
+    if (regResult === 1) {
+      res.clearCookie("jwt"); // Limpiar la cookie anterior
+
+      // Obtener los datos de la cuenta actualizada
+      const accountData = await accountModel.retrieveUserAccountById(account_id);
+      console.log('Account Data for Token:', accountData); // Asegúrate de que los datos sean correctos
+
+      // Crear un nuevo token de acceso
+      const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' });
+      res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 });
+
+      // Renderizar la vista con datos actualizados
+      req.flash("success", `Congratulations, ${accountData.account_firstname} you’ve successfully updated your account info.`);
+      res.status(200).render("account/account-management", {
+        title: "Account Management",
+        nav,
+        errors: null,
+        account_firstname: accountData.account_firstname,
+        account_lastname: accountData.account_lastname,
+        account_email: accountData.account_email,
+      });
+    } else {
+      req.flash("error", "Sorry, the update failed.");
+      console.error('Update failed for account:', account_id); 
+      res.status(400).render("account/edit-account", {
+        title: "Edit Account",
+        nav,
+        errors: null,
+        account_firstname,
+        account_lastname,
+        account_email,
+      });
+    }
+  } catch (error) {
+    console.error('Error processing account update:', error);
+    req.flash("error", "An unexpected error occurred.");
+    res.status(500).render("account/edit-account", {
       title: "Edit Account",
       nav,
       errors: null,
-      account_firstname: account_firstname,
-      account_lastname: account_lastname,
-      account_email: account_email,
-    })
+      account_firstname,
+      account_lastname,
+      account_email,
+    });
   }
 };
 

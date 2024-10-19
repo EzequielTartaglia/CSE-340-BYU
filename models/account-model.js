@@ -89,6 +89,29 @@ async function retrieveUserAccountById(account_id) {
 }
 
 /* *****************************
+* Update user account information
+* ***************************** */
+// Purpose: Updates the firstname, lastname, and email of a user account.
+async function updateAccountInfo(account_firstname, account_lastname, account_email, account_id) {
+  try {
+    const updateQuery = `
+      UPDATE public.account 
+      SET account_firstname = $1, 
+          account_lastname = $2, 
+          account_email = $3
+      WHERE account_id = $4
+    `;
+
+    const result = await pool.query(updateQuery, [account_firstname, account_lastname, account_email, account_id]);
+    return result.rowCount; 
+  } catch (error) {
+    console.error("Update Account Info Error:", error);
+    throw error; 
+  }
+}
+
+
+/* *****************************
 * Update user password
 * ***************************** */
 // Purpose: Updates a users password.
@@ -104,4 +127,4 @@ async function updateAccountPassword(account_password, account_id) {
   }
 }
 
-module.exports = {insertNewUserAccount, checkIfEmailExists, retrieveUserAccountByEmail, retrieveUserAccountById, updateAccountPassword};
+module.exports = {insertNewUserAccount, checkIfEmailExists, retrieveUserAccountByEmail, retrieveUserAccountById, updateAccountPassword, updateAccountInfo};

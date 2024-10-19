@@ -317,9 +317,7 @@ invCont.buildViewDeleteConfirmation = async (req, res, next) => {
   const inv_id = parseInt(req.params.inv_id);
   let nav = await Util.getNavigation();
   const vehicleData = await invModel.retrieveVehicleDataById(inv_id);
-  
-  // Don't need this -> const classificationList = await Util.buildVehicleClassificationSelectList();
-  
+    
   const vehicleDeleteTitle = `${vehicleData[0].inv_make} ${vehicleData[0].inv_model}`;
 
   res.status(201).render(
@@ -327,7 +325,6 @@ invCont.buildViewDeleteConfirmation = async (req, res, next) => {
     {
       title: `Edit ${vehicleDeleteTitle}`,
       nav,
-      // Don't need this -> classificationList: classificationList,
       errors: null,
       inv_id: vehicleData[0].inv_id,
       inv_make: vehicleData[0].inv_make,
