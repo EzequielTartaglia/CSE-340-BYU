@@ -38,3 +38,14 @@ account_firstname: Charley
 account_lastname: Villanueva
 account_email: charley.villanueva@test.com
 account_password: $*k5WS!XSm3Z9fB@
+
+
+#### Queries
+
+INSERT INTO public.account (account_firstname, account_lastname, account_email, account_password) VALUES
+('Basic', 'Client', 'basic@340.edu', 'I@mABas1cCl!3nt'),
+('Happy', 'Employee', 'happy@340.edu', 'I@mAnEmpl0y33'),
+('Manager', 'User', 'manager@340.edu', 'I@mAnAdm!n1strat0r'),
+('Steve', 'Lindsay', 'steve.lindsay@test.com', '!BR3Cunrv@gKk'),
+('Lily-Mae', 'Robyns', 'lily.robyns@test.com', 'j0H7pCAMv!#EVnn8!'),
+('Charley', 'Villanueva', 'charley.villanueva@test.com', '$*k5WS!XSm3Z9fB@');

@@ -26,8 +26,6 @@ async function retrieveInventoryDataByClassificationId(classification_id)
   {
     const selectQuery = ` 
       SELECT * FROM public.inventory AS i 
-      JOIN public.vehicle_status as v_s
-      ON i.inv_id = v_s.inv_id
       JOIN public.classification AS c 
       ON i.classification_id = c.classification_id 
       WHERE i.classification_id = $1
