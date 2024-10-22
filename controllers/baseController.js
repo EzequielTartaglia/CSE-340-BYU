@@ -19,9 +19,13 @@ baseController.buildHome = async function(req, res){
 }
 
 baseController.error = async function(req, res) {
-    throw new IntentionalError("This page is intentionally broken. See /controllers/baseController.js line 10.");
+    const nav = await utilities.getNavigation(); 
+    res.render("errors/error", {
+        title: "Error",
+        message: "This page is intentionally broken. See /controllers/baseController.js line 27.",
+        nav
+    });
 };
-
 
 
 module.exports = baseController

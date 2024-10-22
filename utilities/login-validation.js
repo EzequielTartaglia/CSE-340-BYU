@@ -118,9 +118,68 @@ validate.changePasswordRules = () => {
     // password is required and must be strong password
     body("account_password")
       .trim()
-      .matches(/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[?!.*@])[A-Za-z\d?!.*@]{12,}$/)
-      .withMessage("Password does not meet requirements."),
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password must be at least 12 characters long, contain at least one lowercase letter, one uppercase letter, one number, and one symbol."),
   ]
 }
 
-  module.exports = validate;
+/*  **********************************
+ *  Check Login Data Validation
+ * ********************************* */
+validate.checkLoginData = async (req, res, next) => {
+  const { account_email } = req.body
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    let nav = await Util.getNavigation()
+    res.render("account/login", {
+      errors: errors.array(), // Use .array() for better error handling
+      title: "Login",
+      nav,
+      account_email,
+    })
+    return
+  }
+  
+  next()
+}
+
+/*  **********************************
+ *  Check Account Update Data Validation
+ * ********************************* */
+validate.checkEditAccountData = async (req, res, next) => {
+  let nav = await Util.getNavigation()
+  const { account_firstname, account_lastname, account_email, account_id } = req.body
+  const accountData = await accountModel.retrieveUserAccountById(account_id)
+  
+  // Check if email exists
+  if (account_email !== accountData.account_email) {
+    const emailExists = await accountModel.checkIfEmailExists(account_email)
+    if (emailExists) {
+      errors.push("Email exists. Please log in or use a different email.")
+    }
+  }
+  
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    res.render("account/edit-account", {
+      errors: errors.array(),
+      title: "Edit Account",
+      nav,
+      account_firstname,
+      account_lastname,
+      account_email,
+    })
+    return
+  }
+  
+  next()
+}
+
+module.exports = validate;
